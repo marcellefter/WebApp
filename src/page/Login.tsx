@@ -11,7 +11,7 @@ const Login = () => {
   // });
 
   const [isLogin, setIsLogin] = useState(true);
-
+  const [userStatus, setUserStatus] = useState<string | null>(null); 
   const [isEmailError, setIsEmailError] = useState(false);
   const [isPasswordError, setIsPasswordError] = useState(false);
   const [isPasswordRetypeError, setIsPasswordRetypeError] = useState(false);
@@ -68,12 +68,17 @@ const Login = () => {
       // check if user exist
       console.log("login");
       axios
-        .get(`http://localhost:3001/users?q=${emailInput}`)
+        .get<UserInterface>(`http://localhost:3001/users?q=${emailInput}`)
         .then((res) => {
-          const userData: UserInterface | null = res.data;
-          if(userData.password === passwordInput) {
-            //
-        })}
+          if(res.data === null) {
+            setUserStatus('not exist')
+          }
+          if(res.data.password === passwordInput) {
+            setUserStatus('exist')
+        } else {
+          setUserStatus('invalid password');
+        }
+        )
         .catch((error) => console.log(error));
     } else {
       if (isEmailError || isPasswordError || isPasswordRetypeError) return;
