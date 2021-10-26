@@ -8,24 +8,30 @@ import Login from './page/Login';
 import EditPost from './page/EditPost';
 
 function App() {
+  const user = localStorage.user;
+
   return (
     <div>
-      <Header/>
+      <Header />
       <Switch>
         <Route path='/' exact>
-          <Login/>
+          <Login />
         </Route>
-        <Route path='/users'>
-          <Users />
-        </Route>
-        <Route path='/posts' exact>
-          <Posts />
-        </Route>
-        <Route path='/edit-posts'>
-          <EditPost/>
-        </Route>
+        {user && (
+        <>
+          <Route path='/users'>
+            <Users />
+          </Route>
+          <Route path='/posts' exact>
+            <Posts />
+          </Route>
+          <Route path='/edit-posts'>
+            <EditPost />
+          </Route>
+        </>
+        )}
         <Route path='*'>
-          <Redirect to='/'/>
+          <Redirect to='/' />
         </Route>
       </Switch>
     </div>

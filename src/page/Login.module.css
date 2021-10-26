@@ -34,23 +34,42 @@
     padding: 5px;
 }
 
-.group {
+.input-error {
+    border: 1px solid red;
+}
+
+.span-error {
+    text-transform: uppercase;
+    color: red;
+}
+
+l .group {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
 }
 
+.group button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.group button:last-child {
+    text-align: left;
+    font-size: 16px;
+}
+
 .btn {
     cursor: pointer;
-    flex-grow: 1;
+    width: 100%;
     padding: 10px;
     text-transform: uppercase;
     border: none;
     border-radius: 3px;
     background: rgb(107, 16, 16);
     color: #fff;
-    margin-right: 30px;
     transition: all .3s;
 }
 

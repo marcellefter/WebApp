@@ -1,0 +1,14 @@
+.user {
+    /* border: 1px solid red; */
+    background: #4baec5;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.name {
+    display: block;
+    color: rgb(6, 58, 199);
+}
+
+.email {}

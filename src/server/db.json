@@ -1,1 +1,45 @@
-{ "id": 1, "title": "json-server", "author": "typicode" }
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ana",
+      "email": "ana@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "name": "Vasea",
+      "email": "vasea@gmail.com",
+      "password": "12345"
+    },
+    {
+      "id": 3,
+      "name": "Ion",
+      "email": "ion@gmail.com",
+      "password": "12345"
+    },
+    {
+      "name": "123@123.123",
+      "email": "123@123.123",
+      "password": "123@123.123",
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "author": "Vasea",
+      "text": "Reprehenderit non magna officia amet est aliquip duis nulla cupidatat magna.Sunt velit et voluptate duis eu est exercitation esse ullamco laborum.Non Lorem sint non tempor nisi dolor consequat amet mollit nisi excepteur.Magna nulla ut ut labore.Et eiusmod voluptate laborum cupidatat Lorem non amet qui quis aliquip commodo.Minim reprehenderit non ullamco esse elit occaecat et.    "
+    },
+    {
+      "id": 2,
+      "author": "Ana",
+      "text": "Voluptate proident duis sit ea qui adipisicing occaecat. Est sint eu tempor labore amet. Laborum veniam aliqua labore aute non enim culpa dolor ex aliquip duis labore laboris. Quis deserunt sint mollit aliqua magna fugiat non sunt excepteur voluptate. Duis et ex nostrud aliqua voluptate pariatur aliquip fugiat aute ipsum. Excepteur laboris voluptate mollit est ad duis nostrud tempor nostrud consectetur culpa exercitation cillum. Labore velit anim qui pariatur ut do cupidatat eiusmod dolor."
+    },
+    {
+      "id": 3,
+      "author": "Ion",
+      "text": "Enim et aliqua ad duis commodo nostrud. Ex sint mollit id sunt laboris laborum sint. Reprehenderit adipisicing aliqua duis adipisicing ullamco laborum dolor cillum quis."
+    }
+  ]
+}

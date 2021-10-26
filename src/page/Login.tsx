@@ -1,90 +1,186 @@
-import React, { useRef, useState } from 'react';
-import classes from './Login.module.css';
+import axios from "axios";
+import React, { useRef, useState } from "react";
+// import { useMutation } from "react-query";
+import { useHistory } from "react-router";
+import classes from "./Login.module.css";
+import { UserInterface } from "./../interface/interface";
 
 const Login = () => {
-    const [isLogin, setIsLogin] = useState(true);
-    const [isError, setIsError] = useState(false);
+  // const mutation = useMutation<UserInterface, UserInterface>((newUser) => {
+  //   return axios.post("/users", newUser);
+  // });
 
-    const inputTextRef = useRef<HTMLInputElement>(null);
-    const inputPasswordRef = useRef<HTMLInputElement>(null);
-    const inputPasswordRetypeRef = useRef<HTMLInputElement>(null);
+  const [isLogin, setIsLogin] = useState(true);
 
-    const toggleLoginStateHandler = () => {
-        setIsLogin(!isLogin);
-        setIsError(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isPasswordRetypeError, setIsPasswordRetypeError] = useState(false);
+
+  const inputEmailRef = useRef<HTMLInputElement>(null);
+  const inputPasswordRef = useRef<HTMLInputElement>(null);
+  const inputPasswordRetypeRef = useRef<HTMLInputElement>(null);
+
+  const history = useHistory();
+
+  const toggleLoginStateHandler = () => {
+    setIsLogin(!isLogin);
+    setIsEmailError(false);
+    setIsPasswordError(false);
+    setIsPasswordRetypeError(false);
+
+    // inputEmailRef.current!.value = '';
+    // inputPasswordRef.current!.value = '';
+    // if (inputPasswordRetypeRef && inputPasswordRetypeRef.current) inputPasswordRetypeRef.current!.value = '';
+  };
+
+  const resetEmailErrorHandler = () => {
+    setIsEmailError(false);
+  };
+  const resetPasswordErrorHandler = () => {
+    setIsPasswordError(false);
+  };
+  const resetPasswordRetypeErrorHandler = () => {
+    setIsPasswordRetypeError(false);
+  };
+
+  const formHandler = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const emailInput = inputEmailRef.current?.value.trim();
+    const passwordInput = inputPasswordRef.current?.value.trim();
+    const passwordRetypeInput = inputPasswordRetypeRef.current?.value.trim();
+
+    if (emailInput === "") {
+      setIsEmailError(true);
+    }
+    if (passwordInput && passwordInput.length < 5) {
+      setIsPasswordError(true);
+    }
+    if (passwordInput !== passwordRetypeInput) {
+      setIsPasswordRetypeError(true);
     }
 
-    const formHandler = (event: any) => {
-        event.preventDefault();
-        setIsError(false);
+    console.log(emailInput);
+    console.log(passwordInput);
+    console.log(passwordRetypeInput);
 
-        if(isLogin && (inputTextRef.current?.value.trim() === '' || inputPasswordRef.current?.value.trim() === '')) {
-            setIsError(true);
-            return; 
-        }
-        if(!isLogin && (inputTextRef.current?.value.trim() === '' || inputPasswordRef.current?.value.trim() === '' || inputPasswordRetypeRef.current?.value.trim() === '')) {
-            setIsError(true);
-            return; 
-        }
+    if (isLogin) {
+      if (isEmailError || isPasswordError) return;
+      // check if user exist
+      console.log("login");
+      axios
+        .get(`http://localhost:3001/users?q=${emailInput}`)
+        .then((res) => {
+          const userData: UserInterface | null = res.data;
+          if(userData.password === passwordInput) {
+            //
+        })}
+        .catch((error) => console.log(error));
+    } else {
+      if (isEmailError || isPasswordError || isPasswordRetypeError) return;
+      //create user
+      console.log("inregistrare");
 
-        console.log(inputTextRef.current?.value);
-        console.log(inputPasswordRef.current?.value);
-        console.log(inputPasswordRetypeRef.current?.value);
-
-        fetch('http://localhost:3001/')
-        .then(res=> {
-            console.log('res', res); 
-            if(res.ok) {
-                return res.json();
-            } else {
-                console.log('eror');
-            }
+      axios
+        .post("http://localhost:3001/users", {
+          name: emailInput,
+          email: emailInput,
+          password: passwordRetypeInput,
         })
-        .then(data => {
-            console.log(data);
-            
-        })
-
+        .then((res) => console.log(res))
+        .then((error) => console.log(error));
     }
+    localStorage.setItem("user", emailInput!);
+    history.push("/users");
+  };
 
+  const classNameOfEmailInput = isEmailError ? classes["input-error"] : "";
+  const classNameOfPasswordInput = isPasswordError
+    ? classes["input-error"]
+    : "";
+  const classNameOfPasswordRetypeInput = isPasswordRetypeError
+    ? classes["input-error"]
+    : "";
 
-    return (
-        <div className={classes.overLay}>
-            <form className={classes.form} onSubmit={formHandler}>
-                {isError && <p className={classes.error}>Completati toate cimpurile!</p>}
-                {isLogin && <h2 className={classes.title}>Logare</h2>}
-                {!isLogin && <h2 className={classes.title}>Inregistrare</h2>}
-                <label className={classes.label}>
-                    email
-                    <input type="text" ref={inputTextRef}/>
-                </label>
-                <label className={classes.label}>
-                    parola
-                    <input type="text" ref={inputPasswordRef}/>
-                </label>
-                {!isLogin && (
-                    <label className={classes.label}>
-                        repetati parola
-                        <input type="text" ref={inputPasswordRetypeRef}/>
-                    </label>
-                )}
-                <div className={classes.group}>
-                    {isLogin && (
-                        <>
-                            <button className={classes.btn}>Logare</button>
-                            <button className={classes.link} onClick={toggleLoginStateHandler}>Inregistrare</button>
-                        </>
-                    )}
-                    {!isLogin && (
-                        <>
-                            <button className={classes.btn}>Inregistrare</button>
-                            <button className={classes.link} onClick={toggleLoginStateHandler}>Logare</button>
-                        </>
-                    )}
-                </div>
-            </form>
+  return (
+    <div className={classes.overLay}>
+      <form className={classes.form} onSubmit={formHandler}>
+        {isLogin && <h2 className={classes.title}>Logare</h2>}
+        {!isLogin && <h2 className={classes.title}>Inregistrare</h2>}
+
+        <label className={classes.label}>
+          Email
+          <input
+            type="email"
+            onChange={() => resetEmailErrorHandler()}
+            ref={inputEmailRef}
+            className={classNameOfEmailInput}
+          />
+          {isEmailError && (
+            <span className={classes["span-error"]}>
+              Format de email invalid!
+            </span>
+          )}
+        </label>
+
+        <label className={classes.label}>
+          Parola
+          <input
+            type="password"
+            onChange={() => resetPasswordErrorHandler()}
+            ref={inputPasswordRef}
+            className={classNameOfPasswordInput}
+          />
+          {isPasswordError && (
+            <span className={classes["span-error"]}>
+              Parola prea scurta! (min 5 caractere)
+            </span>
+          )}
+        </label>
+
+        {!isLogin && (
+          <label className={classes.label}>
+            Repetati parola
+            <input
+              type="password"
+              onChange={() => resetPasswordRetypeErrorHandler()}
+              ref={inputPasswordRetypeRef}
+              className={classNameOfPasswordRetypeInput}
+            />
+            {isPasswordRetypeError && (
+              <span className={classes["span-error"]}>
+                Parolele nu coincid!
+              </span>
+            )}
+          </label>
+        )}
+
+        <div className={classes.group}>
+          {isLogin && (
+            <>
+              <button className={classes.btn}>Logare</button>
+              <button
+                className={classes.link}
+                onClick={toggleLoginStateHandler}
+              >
+                Nu ai cont? Inregistreazate.
+              </button>
+            </>
+          )}
+          {!isLogin && (
+            <>
+              <button className={classes.btn}>Inregistrare</button>
+              <button
+                className={classes.link}
+                onClick={toggleLoginStateHandler}
+              >
+                Deja ai cont? Logheazate.
+              </button>
+            </>
+          )}
         </div>
-    );
+      </form>
+    </div>
+  );
 };
 
 export default Login;
