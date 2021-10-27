@@ -1,4 +1,3 @@
-import React from "react";
 import { UserInterface } from "../interface/interface";
 import User from "../componests/User/User";
 import classes from "./Users.module.css";
