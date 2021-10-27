@@ -2,13 +2,33 @@
     /* border: 1px solid red; */
     background: #4baec5;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 10px;
 }
 
-.name {
-    display: block;
+.info {
     color: rgb(6, 58, 199);
 }
 
-.email {}
+.control button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: none;
+    background: #4331a9;
+    color: #fff;
+    border-radius: 3px;
+    border: 0;
+    padding: 0 20px;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.control button:hover {
+    background: #30237a;
+}

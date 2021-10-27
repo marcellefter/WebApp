@@ -73,12 +73,15 @@ const Login = () => {
           } else if (res.data[0].password === enteredPassword) {
             setUserStatus("exist");
             localStorage.setItem("user", enteredEmail);
+            localStorage.setItem("isAdmin", res.data[0].isAdmin.toString());
             history.push("/users");
           } else {
             setUserStatus("invalid password");
           }
         })
         .catch((error) => console.log(error));
+
+      history.push("/users");
     } else {
       //register
       console.log("inregistrare");
@@ -95,6 +98,7 @@ const Login = () => {
           name: enteredEmail,
           email: enteredEmail,
           password: enteredPassword,
+          isAdmin: false,
         })
         .then((res) => console.log(res))
         .then((error) => console.log(error));

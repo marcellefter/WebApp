@@ -1,6 +1,6 @@
 .overLay {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -28,6 +28,23 @@
     margin-bottom: 10px;
 }
 
+.close {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border: 0;
+    background: url(../../img/close-svgrepo-com.svg) no-repeat center center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.checkbox-label {}
+
+.checkbox-label input {
+    margin-left: 10px;
+}
+
 .label input {
     display: block;
     width: 100%;
@@ -35,39 +52,10 @@
     padding: 5px;
 }
 
-.input-error {
-    border: 1px solid red;
-}
-
-.span-error {
-    display: inline-block;
-    text-transform: uppercase;
-    color: red;
-    margin-top: 5px;
-}
-
-.group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.group button {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.group button:last-child {
-    text-align: left;
-    font-size: 16px;
-}
-
 .btn {
     cursor: pointer;
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     text-transform: uppercase;
     border: none;
     border-radius: 3px;
@@ -78,24 +66,4 @@
 
 .btn:hover {
     background: rgb(189, 32, 32);
-}
-
-.error {
-    color: red;
-    margin-bottom: 10px;
-}
-
-.title {
-    margin-bottom: 10px;
-}
-
-.link {
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    font-size: 24px;
-}
-
-.link:hover {
-    text-decoration: underline;
 }

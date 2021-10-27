@@ -1,34 +1,38 @@
 {
   "users": [
     {
+      "id": 0,
+      "name": "Admin",
+      "email": "admin@admin.admin",
+      "password": "admin",
+      "isAdmin": true
+    },
+    {
       "id": 1,
       "name": "Ana",
       "email": "ana@gmail.com",
-      "password": "12345"
+      "password": "55555",
+      "isAdmin": false
     },
     {
       "id": 2,
       "name": "Vasea",
       "email": "vasea@gmail.com",
-      "password": "12345"
+      "password": "1234567",
+      "isAdmin": false
     },
     {
       "id": 3,
-      "name": "Ion",
-      "email": "ion@gmail.com",
-      "password": "12345"
-    },
-    {
-      "name": "dima@a.com",
-      "email": "dima@a.com",
-      "password": "dima@a.com",
-      "id": 4
+      "name": "VaseaEdited",
+      "email": "vasea@gmail.com",
+      "password": "111111111111111",
+      "isAdmin": false
     }
   ],
   "posts": [
     {
       "id": 1,
-      "author": "Vasea",
+      "author": "Vasea1",
       "text": "Reprehenderit non magna officia amet est aliquip duis nulla cupidatat magna.Sunt velit et voluptate duis eu est exercitation esse ullamco laborum.Non Lorem sint non tempor nisi dolor consequat amet mollit nisi excepteur.Magna nulla ut ut labore.Et eiusmod voluptate laborum cupidatat Lorem non amet qui quis aliquip commodo.Minim reprehenderit non ullamco esse elit occaecat et.    "
     },
     {
@@ -39,7 +43,8 @@
     {
       "id": 3,
       "author": "Ion",
-      "text": "Enim et aliqua ad duis commodo nostrud. Ex sint mollit id sunt laboris laborum sint. Reprehenderit adipisicing aliqua duis adipisicing ullamco laborum dolor cillum quis."
+      "text": "Enim et aliqua ad duis commodo nostrud. Ex sint mollit id sunt laboris laborum sint. Reprehenderit adipisicing aliqua duis adipisicing ullamco laborum dolor cillum quis.",
+      "name": "Ionxczcz"
     }
   ]
 }
