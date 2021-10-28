@@ -5,14 +5,14 @@ import { PostInterface } from "../interface/interface";
 import classes from "./EditPost.module.css";
 
 const EditPost = () => {
+  const [post, setPost] = useState<PostInterface | null>(null);
   const history = useHistory();
   const nameRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const [post, setPost] = useState<PostInterface | null>(null);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
-  console.log(id);
+  console.log('id =', id);
 
   axios
     .get<PostInterface>(`http://localhost:3001/posts/${id}`)
@@ -21,24 +21,24 @@ const EditPost = () => {
 
   const editPostHandler = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (id === 'null') {
+    if (id === null) {//create post
       console.log("id = null");
       axios
         .post(`http://localhost:3001/posts`, {
-          author: localStorage.getItem('user'),
+          author: localStorage.getItem("user"),
+          text: textRef.current?.value,
+        })
+        .then((res) => console.log(res.data))
+        .catch((error) => console.log(error));
+    } else {//edit post 
+      axios
+        .patch(`http://localhost:3001/posts/${id}`, {
+          author: nameRef.current?.value,
           text: textRef.current?.value,
         })
         .then((res) => console.log(res.data))
         .catch((error) => console.log(error));
     }
-
-    axios
-      .patch(`http://localhost:3001/posts/${id}`, {
-        author: nameRef.current?.value,
-        text: textRef.current?.value,
-      })
-      .then((res) => console.log(res.data))
-      .catch((error) => console.log(error));
 
     history.push("/posts");
   };
@@ -50,7 +50,7 @@ const EditPost = () => {
         onSubmit={(event) => editPostHandler(event)}
         className={classes.form}
       >
-        {id !== "null" && (
+        {id && (
           <input
             ref={nameRef}
             className={classes.input}

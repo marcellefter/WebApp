@@ -7,6 +7,7 @@ const User: React.FC<{
   onDelete: (id: string) => void;
   onEdit: (id: string) => void;
 }> = (props) => {
+  
   return (
     <>
       <li key={props.user.id} className={classes.user}>

@@ -3,24 +3,43 @@ import Post from "../componests/Post/Post";
 import classes from "./Posts.module.css";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-
-const fetchUsers = async () => {
-  const res = await fetch("http://localhost:3001/posts");
-  return res.json();
-};
+import { fetchPosts } from "./../api/posts/posts";
+import { AxiosError } from "axios";
 
 const Posts = () => {
-  const response = useQuery("users", fetchUsers);
+  const { data, isLoading, isError, error } = useQuery<
+    unknown,
+    AxiosError,
+    PostInterface[]
+  >("posts", fetchPosts);
+  console.log(error);
+
+  // const queryClient = useQueryClient();\
+  
+  // const { mutate } = useMutation(fetchPosts, {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries("posts");
+  //   },
+  // });
+
+  // const handleForm = (values: any) => {
+  //   const formatedValues = {
+  //     ...values,
+  //     date: new Date(),
+  //   };
+  //   mutate(formatedValues);
+  // };
 
   return (
     <>
       <ul className={classes.posts}>
-        {response.status === "error" && <p>Server error</p>}
-        {response.status === "loading" && <p>Information is loading...</p>}
-        {response.status === "success" &&
-          response.data.map((item: PostInterface) => <Post post={item} />)}
+        {isError && <p>{error}</p>}
+        {isLoading && <p>Information is loading...</p>}
+        {data?.map((item: PostInterface) => (
+          <Post post={item} />
+        ))}
       </ul>
-      <Link to="/edit-post/?id=null" className={classes.button}>
+      <Link to="/edit-post/" className={classes.button}>
         Adauga un post
       </Link>
     </>

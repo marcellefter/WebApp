@@ -2,9 +2,9 @@
   "users": [
     {
       "id": 0,
-      "name": "Admin",
-      "email": "admin@admin.admin",
-      "password": "admin",
+      "name": "Admin13",
+      "email": "admin@admin.admin123",
+      "password": "admin134",
       "isAdmin": true
     },
     {
@@ -20,21 +20,9 @@
       "email": "vasea@gmail.com",
       "password": "1234567",
       "isAdmin": false
-    },
-    {
-      "id": 3,
-      "name": "VaseaEdited",
-      "email": "vasea@gmail.com",
-      "password": "111111111111111",
-      "isAdmin": false
     }
   ],
   "posts": [
-    {
-      "id": 1,
-      "author": "Vasea1",
-      "text": "Reprehenderit non magna officia amet est aliquip duis nulla cupidatat magna.Sunt velit et voluptate duis eu est exercitation esse ullamco laborum.Non Lorem sint non tempor nisi dolor consequat amet mollit nisi excepteur.Magna nulla ut ut labore.Et eiusmod voluptate laborum cupidatat Lorem non amet qui quis aliquip commodo.Minim reprehenderit non ullamco esse elit occaecat et.    "
-    },
     {
       "id": 2,
       "author": "Ana",
@@ -45,6 +33,11 @@
       "author": "Ion",
       "text": "Enim et aliqua ad duis commodo nostrud. Ex sint mollit id sunt laboris laborum sint. Reprehenderit adipisicing aliqua duis adipisicing ullamco laborum dolor cillum quis.",
       "name": "Ionxczcz"
+    },
+    {
+      "author": "admin@admin.admin",
+      "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "id": 5
     }
   ]
 }
