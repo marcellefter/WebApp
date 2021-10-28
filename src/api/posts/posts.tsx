@@ -6,5 +6,6 @@ export const fetchPosts = async () => {
 };
 
 export const deletePost = async (id: string) => {
-  return axios.delete(`http://localhost:3001/posts/${id}`);
+  const { data } = axios.delete(`http://localhost:3001/posts/${id}`);
+  return data;
 };
